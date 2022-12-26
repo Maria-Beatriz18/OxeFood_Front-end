@@ -1,12 +1,13 @@
 import React from 'react';
-import { TouchableHighlight, View, Text, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import { Button, Header, Image, Input } from 'react-native-elements';
 
 import { styles } from './styles';
 
-export function Login({ navigation }) {
+export function EsqueceuSenha({ navigation }) {
   return (
     <View style={styles.container}>
+
         <Header
             centerComponent={
             <Image
@@ -18,29 +19,15 @@ export function Login({ navigation }) {
         />
 
         <Input
-            label='E-mail'
+            label='Informe o e-mail cadastrado'
+            labelStyle={{color:'#000'}}
             placeholder='E-mail'
             inputContainerStyle={styles.input}
             containerStyle={[styles.inputContainer, {marginTop:64}]}
         />
 
-        <Input
-            label='Senha'
-            placeholder='Senha'
-            inputContainerStyle={styles.input}
-            containerStyle={styles.inputContainer}
-            secureTextEntry={true}
-        />
-
-        <TouchableOpacity 
-            style={{marginRight:180, marginTop:-8}}
-            onPress={()=>navigation.navigate('EsqueceuSenha')}
-        >
-            <Text>Esqueceu sua senha?</Text>
-        </TouchableOpacity>
-
         <Button 
-            title='Entrar'
+            title='Recuperar conta'
             containerStyle={{marginTop: 80}}
             buttonStyle={styles.button}
             onPress={()=>navigation.navigate('Inicio')}

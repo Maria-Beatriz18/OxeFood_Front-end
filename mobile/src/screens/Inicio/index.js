@@ -5,7 +5,7 @@ import { Button, Image } from 'react-native-elements';
 
 import { styles } from './styles';
 
-export function Inicio() {
+export function Inicio({  navigation  }) {
     return (
         <View style={styles.container}>
           <Image
@@ -20,6 +20,7 @@ export function Inicio() {
             buttonStyle={styles.button}
             containerStyle={{marginBottom:16, borderRadius:16}}
             titleStyle={{color:'#000'}}
+            onPress={()=>navigation.navigate('Login')}
           />
 
           <Button 
