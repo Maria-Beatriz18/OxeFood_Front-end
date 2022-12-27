@@ -6,6 +6,11 @@ import { StatusBar } from 'expo-status-bar';
 import { EsqueceuSenha } from './src/screens/EsqueceuSenha';
 import { Inicio } from './src/screens/Inicio';
 import { Login } from './src/screens/Login';
+import { CadastroUsuario } from './src/screens/CadastroUsuario';
+import { HomeScreen } from './src/screens/HomeScreen';
+import { Restaurante } from './src/screens/Restaurante';
+import { ListaDeProdutos } from './src/screens/ListaDeProdutos';
+import { Endereco } from './src/screens/Endereco';
 
 export default function App() {
   
@@ -24,6 +29,11 @@ export default function App() {
           <Screen name="Inicio" component={Inicio}/>
           <Screen name="Login" component={Login}/>
           <Screen name="EsqueceuSenha" component={EsqueceuSenha}/>
+          <Screen name="CadastroUsuario" component={CadastroUsuario}/>
+          <Screen name="HomeScreen" component={HomeScreen}/>
+          <Screen name="Restaurante" component={Restaurante}/>
+          <Screen name="ListaDeProdutos" component={ListaDeProdutos}/>
+          <Screen name="Endereco" component={Endereco}/>
         </Navigator>
     </NavigationContainer>
   );
