@@ -11,6 +11,7 @@ import { HomeScreen } from './src/screens/HomeScreen';
 import { Restaurante } from './src/screens/Restaurante';
 import { ListaDeProdutos } from './src/screens/ListaDeProdutos';
 import { Endereco } from './src/screens/Endereco';
+import { Sacola } from './src/screens/Sacola';
 
 export default function App() {
   
@@ -34,6 +35,7 @@ export default function App() {
           <Screen name="Restaurante" component={Restaurante}/>
           <Screen name="ListaDeProdutos" component={ListaDeProdutos}/>
           <Screen name="Endereco" component={Endereco}/>
+          <Screen name="Sacola" component={Sacola}/>
         </Navigator>
     </NavigationContainer>
   );
