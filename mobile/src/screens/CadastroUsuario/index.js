@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Button } from 'react-native';
 import { styles } from './styles';
 
-export function cadastroUsuario ({ navigation }) {
+export function CadastroUsuario ({ navigation }) {
     return(
         <KeyboardAvoidingView style={styles.container}>
             <View style={styles.containerInput}>
