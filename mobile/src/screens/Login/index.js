@@ -43,7 +43,7 @@ export function Login({ navigation }) {
             title='Entrar'
             containerStyle={{marginTop: 80}}
             buttonStyle={styles.button}
-            onPress={()=>navigation.navigate('Inicio')}
+            onPress={()=>navigation.navigate('HomeScreen')}
         />
     </View>
   );

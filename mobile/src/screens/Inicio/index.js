@@ -20,7 +20,7 @@ export function Inicio({  navigation  }) {
             buttonStyle={styles.button}
             containerStyle={{marginBottom:16, borderRadius:16}}
             titleStyle={{color:'#000'}}
-            onPress={()=>navigation.navigate('Sacola')}
+            onPress={()=>navigation.navigate('Login')}
           />
 
           <Button 
