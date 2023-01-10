@@ -5,11 +5,12 @@ import {
   FlatList,
   Text,
   TouchableOpacity,
-  Image,
+
   TextInput,
   StatusBar,
+
 } from "react-native";
-import { Button, Icon } from "react-native-elements";
+import { Avatar, Button, Icon,   Header, Image } from "react-native-elements";
 import { headerList } from "../../data/headerList";
 import { categories } from "../../data/categoriesList";
 
@@ -58,19 +59,27 @@ export function HomeScreen({ navigation }) {
         translucent
       />
       <View style={styles.headerContainer}>
-        <Text>IFPE Jaboatão</Text>
+
+      <Header backgroundColor="#c60303" 
+          
+          centerComponent={
+            <Image style={{height: 50, width: 200}}
+            source={require("../../assets/header-login.png")}
+          />
+          }
+  rightComponent={
+    <TouchableOpacity>
+    <Image style={{height: 50, width: 50}}
+        source={require("../../assets/avatar.png")}
+        onPress={() => navigation.navigate("TelaPerfilUsuario")}
+      />
+</TouchableOpacity>
+  }
+/>
+  
       </View>
 
-      <View style={{ marginTop: 2 }}>
-        <FlatList
-          data={headerList}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={styles.spacingButton} />}
-          contentContainerStyle={styles.header}
-          renderItem={renderHeader}
-        />
-      </View>
+      
 
       <View style={styles.barSeparator} />
 

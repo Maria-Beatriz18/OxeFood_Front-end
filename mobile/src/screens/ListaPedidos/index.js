@@ -7,6 +7,6 @@ export function ListaPedidos({  navigation  }) {
      return(
         <View>
             <Text>Esqueleto da Tela</Text>
-        </View>
+        </View> 
      )
 }

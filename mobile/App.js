@@ -11,6 +11,7 @@ import { Endereco } from "./src/screens/Endereco";
 import { Sacola } from "./src/screens/Sacola";
 import { Restaurantes } from "./src/screens/Restaurante";
 import { ListaPedidos } from "./src/screens/ListaPedidos";
+import { TelaPerfilUsuario } from "./src/screens/TelaPerfilUsuario";
 import { StatusBar } from "react-native";
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
         <Screen name="Endereco" component={Endereco} />
         <Screen name="Sacola" component={Sacola} />
         <Screen name="ListaPedidos" component={ListaPedidos} />
+        <Screen name="TelaPerfilUsuario" component={TelaPerfilUsuario} />
       </Navigator>
     </NavigationContainer>
   );
