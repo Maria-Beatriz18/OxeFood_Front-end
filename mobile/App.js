@@ -10,6 +10,7 @@ import { HomeScreen } from "./src/screens/HomeScreen";
 import { Endereco } from "./src/screens/Endereco";
 import { Sacola } from "./src/screens/Sacola";
 import { Restaurantes } from "./src/screens/Restaurante";
+import { ListaPedidos } from "./src/screens/ListaPedidos";
 import { StatusBar } from "react-native";
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
         <Screen name="ListaDeProdutos" component={ListaDeProdutos} />
         <Screen name="Endereco" component={Endereco} />
         <Screen name="Sacola" component={Sacola} />
+        <Screen name="ListaPedidos" component={ListaPedidos} />
       </Navigator>
     </NavigationContainer>
   );
