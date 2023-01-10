@@ -1,81 +1,131 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
 import {
-  Avatar,
-  Input,
-  Button,
-  SearchBar,
-  Card,
-  ListItem,
-} from "react-native-elements";
-import { style } from "./styles";
+  Text,
+  View,
+  Image,
+  SafeAreaView,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
+
+import { shopItens } from "../../data/shopItens";
 
 export function Restaurantes({ navigation }) {
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          flexDirection: "column",
-          padding: 0,
-        },
-      ]}
-    >
-      <View style={{ flex: 1 }}>
-        <Image
-          source={require("../../assets/restaurante.jpeg")}
-          style={{ width: 430, height: 250 }}
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#ccc" }}>
+      <Image
+        source={require("../../assets/restaurante.jpeg")}
+        style={{
+          width: "100%",
+          height: 250,
+          paddingTop: 50,
+        }}
+      />
+
+      <View>
+        <FlatList
+          data={shopItens}
+          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+          contentContainerStyle={{
+            alignItems: "center",
+            marginTop: 16,
+            paddingBottom: 340,
+          }}
+          renderItem={({ item }) => (
+            <View
+              style={{
+                backgroundColor: "white",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                  marginBottom: 14,
+                }}
+              >
+                <View
+                  style={{
+                    width: "60%",
+                    marginRight: 10,
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontWeight: "700",
+                      marginBottom: 10,
+                      marginTop: 10,
+                    }}
+                  >
+                    {item.nome}
+                  </Text>
+                  <Text style={{ marginBottom: 10 }}>{item.descricao}</Text>
+                  <Text style={{ fontWeight: "bold", marginBottom: 2 }}>
+                    R$: <Text style={{ fontWeight: "400" }}>{item.preco}</Text>
+                  </Text>
+                  <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
+                    Serve até {item.pessoas} pessoas.
+                  </Text>
+                </View>
+
+                <View>
+                  <Image
+                    source={item.image}
+                    style={{ width: 100, height: 100, marginRight: 10 }}
+                  />
+                </View>
+              </View>
+              <TouchableOpacity
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "red",
+                  width: "80%",
+                  marginBottom: 10,
+                  padding: 8,
+                }}
+                activeOpacity={0.7}
+                onPress={() => null}
+              >
+                <Text style={{ color: "white" }}>Adicionar</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         />
       </View>
 
-      <View style={{ flex: 2 }}>
-        <ScrollView>
-          <Card>
-            <Card.Title>Promo Bob's</Card.Title>
-            <Card.Divider />
-            <Card.Image
-              source={require("../../assets/header-login.png")}
-              onPress={() => navigation.navigate("")}
-            ></Card.Image>
-          </Card>
-
-          <Card>
-            <Card.Title>exemplo</Card.Title>
-            <Card.Divider />
-            <Card.Image
-              source={require("../../assets/header-login.png")}
-              onPress={() => navigation.navigate("")}
-            ></Card.Image>
-          </Card>
-
-          <Card>
-            <Card.Title>exemplo</Card.Title>
-            <Card.Divider />
-            <Card.Image
-              source={require("../../assets/header-login.png")}
-              onPress={() => navigation.navigate("")}
-            ></Card.Image>
-          </Card>
-
-          <Card>
-            <Card.Title>exemplo</Card.Title>
-            <Card.Divider />
-            <Card.Image
-              source={require("../../assets/header-login.png")}
-              onPress={() => navigation.navigate("")}
-            ></Card.Image>
-          </Card>
-        </ScrollView>
+      <View
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "white",
+          alignItems: "center",
+          justifyContent: "center",
+          height: 60,
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            backgroundColor: "red",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "90%",
+            height: "80%",
+          }}
+          activeOpacity={0.6}
+          onPress={() => navigation.navigate("Sacola")}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>
+            Sacola
+          </Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: "white",
-  },
-});
