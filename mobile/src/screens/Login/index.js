@@ -8,16 +8,18 @@ import {
   Alert,
 } from "react-native";
 import { Button, Header, Image, Input } from "react-native-elements";
+import { BASE_URL } from "../../data/url";
 
 import { styles } from "./styles";
 
 export function Login({ navigation }) {
-  const API_URL = `https://oxefood-backend-production.up.railway.app/api/login/signin`;
+  const API_URL = `${BASE_URL}/api/login/signin`;
 
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
 
-  async function login() {
+  // Remover comentário para autenticação
+  /* async function login() {
     if (email && senha) {
       await axios
         .post(API_URL, {
@@ -35,9 +37,9 @@ export function Login({ navigation }) {
         })
         .catch((err) => alert("Usuário incorreto"));
     } else {
-      Alert.alert("Erro", "Email ou senha inválidos.")
+      Alert.alert("Erro", "Email ou senha inválidos.");
     }
-  }
+  } */
   return (
     <View style={styles.container}>
       <Header
@@ -76,11 +78,18 @@ export function Login({ navigation }) {
         <Text>Esqueceu sua senha?</Text>
       </TouchableOpacity>
 
-      <Button
+      {/* BOTÃO COM AUTENTICAÇÃO*/}
+      {/* <Button
         title="Entrar"
         containerStyle={{ marginTop: 80 }}
         buttonStyle={styles.button}
         onPress={() => login()}
+      /> */}
+      <Button
+        title="Entrar"
+        containerStyle={{ marginTop: 80 }}
+        buttonStyle={styles.button}
+        onPress={() => navigation.navigate("HomeScreen")}
       />
     </View>
   );

@@ -11,10 +11,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Button, Header, Icon } from "react-native-elements";
+import { BASE_URL } from "../../data/url";
 import { styles } from "./styles";
 
 export function CadastroUsuario({ navigation }) {
-  const API_URL = `https://oxefood-backend-production.up.railway.app/api/cliente`;
+  const API_URL = `${BASE_URL}/api/cliente`;
 
   const [email, setEmail] = useState();
   const [numero, setNumero] = useState();
@@ -38,7 +39,7 @@ export function CadastroUsuario({ navigation }) {
         })
         .catch((err) => alert(err));
     } else {
-      alert("vazio");
+      alert("Os campos não podem ser vazios.");
     }
   }
   return (

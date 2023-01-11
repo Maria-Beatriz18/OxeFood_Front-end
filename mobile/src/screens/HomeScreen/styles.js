@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   headerContainer: {
-    paddingTop: Platform.OS === "android" ? 50 : 0,
     alignItems: "center",
   },
   searchContainer: {

@@ -5,29 +5,17 @@ import {
   FlatList,
   Text,
   TouchableOpacity,
-
   TextInput,
   StatusBar,
-
+  Image,
 } from "react-native";
-import { Avatar, Button, Icon,   Header, Image } from "react-native-elements";
-import { headerList } from "../../data/headerList";
+import { Icon, Header } from "react-native-elements";
 import { categories } from "../../data/categoriesList";
 
 import { styles } from "./styles";
 import { shop } from "../../data/shopList";
 
 export function HomeScreen({ navigation }) {
-  const renderHeader = ({ item }) => (
-    <TouchableOpacity
-      activeOpacity={0.5}
-      style={styles.buttonHeader}
-      onPress={() => navigation.navigate(item.navigate)}
-    >
-      <Text style={styles.textHeader}>{item.name}</Text>
-    </TouchableOpacity>
-  );
-
   const renderCategories = ({ item }) => (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -59,29 +47,26 @@ export function HomeScreen({ navigation }) {
         translucent
       />
       <View style={styles.headerContainer}>
-
-      <Header backgroundColor="#c60303" 
-          
+        <Header
+          backgroundColor="#c60303"
           centerComponent={
-            <Image style={{height: 50, width: 200}}
-            source={require("../../assets/header-login.png")}
-          />
+            <Image
+              style={{ height: 50, width: 200 }}
+              source={require("../../assets/header-login.png")}
+            />
           }
-  rightComponent={
-    <TouchableOpacity>
-    <Image style={{height: 50, width: 50}}
-        source={require("../../assets/avatar.png")}
-        onPress={() => navigation.navigate("TelaPerfilUsuario")}
-      />
-</TouchableOpacity>
-  }
-/>
-  
+          rightComponent={
+            <TouchableOpacity
+              onPress={() => navigation.navigate("TelaPerfilUsuario")}
+            >
+              <Image
+                style={{ height: 48, width: 48 }}
+                source={require("../../assets/avatar.png")}
+              />
+            </TouchableOpacity>
+          }
+        />
       </View>
-
-      
-
-      <View style={styles.barSeparator} />
 
       <View style={styles.searchContainer}>
         <Icon
