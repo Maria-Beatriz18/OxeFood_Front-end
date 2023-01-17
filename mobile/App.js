@@ -13,6 +13,7 @@ import { Restaurantes } from "./src/screens/Restaurante";
 import { ListaPedidos } from "./src/screens/ListaPedidos";
 import { TelaPerfilUsuario } from "./src/screens/TelaPerfilUsuario";
 import { StatusBar } from "react-native";
+import { CartProvider } from "./src/context/CartContext";
 
 export default function App() {
   const { Navigator, Screen } = createNativeStackNavigator();
@@ -24,22 +25,24 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      <Navigator
-        initialRouteName="Inicio"
-        screenOptions={{ headerShown: false }}
-      >
-        <Screen name="Inicio" component={Inicio} />
-        <Screen name="Login" component={Login} />
-        <Screen name="EsqueceuSenha" component={EsqueceuSenha} />
-        <Screen name="CadastroUsuario" component={CadastroUsuario} />
-        <Screen name="HomeScreen" component={HomeScreen} />
-        <Screen name="Restaurantes" component={Restaurantes} />
-        <Screen name="ListaDeProdutos" component={ListaDeProdutos} />
-        <Screen name="Endereco" component={Endereco} />
-        <Screen name="Sacola" component={Sacola} />
-        <Screen name="ListaPedidos" component={ListaPedidos} />
-        <Screen name="TelaPerfilUsuario" component={TelaPerfilUsuario} />
-      </Navigator>
+      <CartProvider>
+        <Navigator
+          initialRouteName="Inicio"
+          screenOptions={{ headerShown: false }}
+        >
+          <Screen name="Inicio" component={Inicio} />
+          <Screen name="Login" component={Login} />
+          <Screen name="EsqueceuSenha" component={EsqueceuSenha} />
+          <Screen name="CadastroUsuario" component={CadastroUsuario} />
+          <Screen name="HomeScreen" component={HomeScreen} />
+          <Screen name="Restaurantes" component={Restaurantes} />
+          <Screen name="ListaDeProdutos" component={ListaDeProdutos} />
+          <Screen name="Endereco" component={Endereco} />
+          <Screen name="Sacola" component={Sacola} />
+          <Screen name="ListaPedidos" component={ListaPedidos} />
+          <Screen name="TelaPerfilUsuario" component={TelaPerfilUsuario} />
+        </Navigator>
+      </CartProvider>
     </NavigationContainer>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Text,
   View,
@@ -7,10 +7,16 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import { CartContext } from "../../context/CartContext";
 
 import { shopItens } from "../../data/shopItens";
 
 export function Restaurantes({ navigation }) {
+  const { adicionarItem } = useContext(CartContext);
+  const handleAddToCart = (item) => {
+    adicionarItem(item);
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#ccc" }}>
       <Image
@@ -83,13 +89,13 @@ export function Restaurantes({ navigation }) {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundColor: "red",
+                  backgroundColor: "#c60303",
                   width: "80%",
                   marginBottom: 10,
                   padding: 8,
                 }}
                 activeOpacity={0.7}
-                onPress={() => null}
+                onPress={() => handleAddToCart(item)}
               >
                 <Text style={{ color: "white" }}>Adicionar</Text>
               </TouchableOpacity>
@@ -112,7 +118,7 @@ export function Restaurantes({ navigation }) {
       >
         <TouchableOpacity
           style={{
-            backgroundColor: "red",
+            backgroundColor: "#c60303",
             alignItems: "center",
             justifyContent: "center",
             width: "90%",

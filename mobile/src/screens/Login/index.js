@@ -1,12 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import {
-  TouchableHighlight,
-  View,
-  Text,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { Button, Header, Image, Input } from "react-native-elements";
 import { BASE_URL } from "../../data/url";
 
@@ -18,8 +12,7 @@ export function Login({ navigation }) {
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
 
-  // Remover comentário para autenticação
-  /* async function login() {
+  async function login() {
     if (email && senha) {
       await axios
         .post(API_URL, {
@@ -39,7 +32,7 @@ export function Login({ navigation }) {
     } else {
       Alert.alert("Erro", "Email ou senha inválidos.");
     }
-  } */
+  }
   return (
     <View style={styles.container}>
       <Header
@@ -78,18 +71,11 @@ export function Login({ navigation }) {
         <Text>Esqueceu sua senha?</Text>
       </TouchableOpacity>
 
-      {/* BOTÃO COM AUTENTICAÇÃO*/}
-      {/* <Button
-        title="Entrar"
-        containerStyle={{ marginTop: 80 }}
-        buttonStyle={styles.button}
-        onPress={() => login()}
-      /> */}
       <Button
         title="Entrar"
         containerStyle={{ marginTop: 80 }}
         buttonStyle={styles.button}
-        onPress={() => navigation.navigate("HomeScreen")}
+        onPress={() => login()}
       />
     </View>
   );

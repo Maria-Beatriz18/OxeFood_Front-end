@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+
 import {
   Text,
   View,
@@ -8,40 +9,51 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { sacolaItens } from "../../data/sacolaItens";
+import { Header, Icon, Button } from "react-native-elements";
+import { CartContext } from "../../context/CartContext";
 
 export function Sacola({ navigation }) {
+  const { cart, removerItem, totalValue } = useContext(CartContext);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#ccc" }}>
-     
-     
-
       <View>
-      <TouchableOpacity
-          style={{
-            backgroundColor: "red",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-            height: "8%",
-          }}
-          activeOpacity={0.6}
-          onPress={() => navigation.navigate("Sacola")}
-        >
-          <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>
-            Sacola
-          </Text>
-        </TouchableOpacity>
-      
+        <Header
+          backgroundColor="#c60303"
+          centerComponent={
+            <Text style={{ fontSize: 24, fontWeight: "600", color: "white" }}>
+              Sacola
+            </Text>
+          }
+          leftComponent={
+            <Button
+              buttonStyle={{
+                backgroundColor: "transparent",
+                paddingVertical: 2,
+                paddingHorizontal: 16,
+              }}
+              icon={
+                <Icon
+                  name="angle-left"
+                  type="font-awesome"
+                  color="#fff"
+                  size={36}
+                />
+              }
+              onPress={() => navigation.goBack()}
+            />
+          }
+        />
+
         <FlatList
-          data={sacolaItens}
+          data={cart}
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           contentContainerStyle={{
             alignItems: "center",
             marginTop: 16,
             paddingBottom: 340,
           }}
-          renderItem={({ item }) => (
+          renderItem={({ index, item }) => (
             <View
               style={{
                 backgroundColor: "white",
@@ -78,7 +90,7 @@ export function Sacola({ navigation }) {
                     R$: <Text style={{ fontWeight: "400" }}>{item.preco}</Text>
                   </Text>
                   <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
-                    Serve até {item.pessoas} pessoas.
+                    Serve até {item.pessoa} pessoas.
                   </Text>
                 </View>
 
@@ -89,148 +101,84 @@ export function Sacola({ navigation }) {
                   />
                 </View>
               </View>
+
               <TouchableOpacity
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundColor: "red",
+                  backgroundColor: "#c60303",
                   width: "80%",
                   marginBottom: 10,
                   padding: 8,
                 }}
                 activeOpacity={0.7}
-                onPress={() => navigation.navigate("Restaurantes")}
+                onPress={() => removerItem(index)}
               >
-                <Text style={{ color: "white" }}>Retirar</Text>
-
+                <Text style={{ color: "white" }}>Remover</Text>
               </TouchableOpacity>
-
-              
-
-              
             </View>
           )}
         />
       </View>
 
-
-
-      <View
-              style={{
-                backgroundColor: "white",
-                justifyContent: "center",
-                alignItems: "center",
-                
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                  marginBottom: 20,
-                }}
-              >
-                <View
-                  style={{
-                    width: "60%",
-                    marginRight: 10,
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontWeight: "700",
-                                          
-                    }}
-                  >
-                   
-                  </Text>
-                  <Text style={{fontSize:22, marginBottom:30 }}>Total: R$20,00</Text>
-                 
-                </View>
-
-                <View>
-                  <Image
-                    
-                    style={{ width: 100, height: 100, marginRight: 10 }}
-                  />
-                </View>
-              </View>
-              <TouchableOpacity
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "red",
-                  width: "80%",
-                  marginBottom: 10,
-                  padding: 8,
-                }}
-                activeOpacity={0.7}
-                onPress={() => navigation.navigate("Restaurantes")}
-              >
-                <Text style={{ color: "white" }}>Retirar</Text>
-
-              </TouchableOpacity>
-
-              
-
-              
-            </View>
-
-        
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <View
         style={{
+          backgroundColor: "white",
+          justifyContent: "center",
+          alignItems: "center",
           position: "absolute",
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: "white",
-          alignItems: "center",
-          justifyContent: "center",
-          height: 60,
-
-          
         }}
       >
-
-      <TouchableOpacity
+        <View
           style={{
-            backgroundColor: "red",
-            alignItems: "center",
             justifyContent: "center",
+            alignItems: "center",
             width: "100%",
-            height: "80%",
           }}
-          activeOpacity={0.6}
-          onPress={() => navigation.navigate("Sacola")}
         >
-          <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>
-            Pagar
-          </Text>
-        </TouchableOpacity>
-        
+          <View style={{ width: "80%", justifyContent: "flex-start" }}>
+            <Text
+              style={{ fontSize: 20, fontWeight: "700", marginVertical: 10 }}
+            >
+              Valor total:{" "}
+              <Text style={{ fontWeight: "400" }}>
+                R$ {totalValue.toFixed(2)}
+              </Text>
+            </Text>
+          </View>
+          {totalValue > 0 ? (
+            <TouchableOpacity
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#c60303",
+                width: "80%",
+                marginBottom: 10,
+                padding: 8,
+              }}
+              activeOpacity={0.7}
+              onPress={() => null}
+            >
+              <Text style={{ color: "white" }}>Fazer pedido</Text>
+            </TouchableOpacity>
+          ) : (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "grey",
+                width: "80%",
+                marginBottom: 10,
+                padding: 8,
+              }}
+            >
+              <Text style={{ color: "white" }}>Fazer pedido</Text>
+            </View>
+          )}
+        </View>
       </View>
     </SafeAreaView>
   );

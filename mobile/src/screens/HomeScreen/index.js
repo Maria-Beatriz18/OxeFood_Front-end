@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -13,9 +13,32 @@ import { Icon, Header } from "react-native-elements";
 import { categories } from "../../data/categoriesList";
 
 import { styles } from "./styles";
-import { shop } from "../../data/shopList";
+import axios from "axios";
 
-export function HomeScreen({ navigation }) {
+export function HomeScreen({ navigation, route }) {
+  const [getToken, setToken] = useState();
+  const [getData, setData] = useState([]);
+
+  useEffect(() => {
+    if (route.params) {
+      const { token } = route.params;
+      setToken(token);
+    }
+
+    async function resgatarDados() {
+      const result = await axios(
+        `https://oxefood-backend.up.railway.app/api/loja`,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken}`,
+          },
+        }
+      );
+      setData(result.data);
+    }
+    resgatarDados();
+  }, []);
+
   const renderCategories = ({ item }) => (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -30,12 +53,12 @@ export function HomeScreen({ navigation }) {
   const renderShop = ({ item }) => (
     <TouchableOpacity
       activeOpacity={0.5}
-      key={item.key}
+      key={item.id}
       style={styles.shopContainer}
       onPress={() => navigation.navigate("Restaurantes")}
     >
-      <Image source={item.image} />
-      <Text style={styles.textShop}>{item.label}</Text>
+      <Image source={{ uri: item.imagem }} />
+      <Text style={styles.textShop}>{item.nome}</Text>
     </TouchableOpacity>
   );
 
@@ -93,10 +116,11 @@ export function HomeScreen({ navigation }) {
       <View>
         <Text style={styles.titleShop}>Lojas</Text>
         <FlatList
-          data={shop}
+          data={getData}
           showsVerticalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{ paddingBottom: 10 }} />}
           renderItem={renderShop}
+          keyExtractor={(item) => item.id}
         />
       </View>
     </SafeAreaView>
