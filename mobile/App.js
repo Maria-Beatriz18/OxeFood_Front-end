@@ -12,6 +12,7 @@ import { Sacola } from "./src/screens/Sacola";
 import { Restaurantes } from "./src/screens/Restaurante";
 import { ListaPedidos } from "./src/screens/ListaPedidos";
 import { TelaPerfilUsuario } from "./src/screens/TelaPerfilUsuario";
+import { AlterarSenha } from "./src/screens/AlterarSenha";
 import { StatusBar } from "react-native";
 import { CartProvider } from "./src/context/CartContext";
 
@@ -41,6 +42,7 @@ export default function App() {
           <Screen name="Sacola" component={Sacola} />
           <Screen name="ListaPedidos" component={ListaPedidos} />
           <Screen name="TelaPerfilUsuario" component={TelaPerfilUsuario} />
+          <Screen name="AlterarSenha" component={AlterarSenha} />
         </Navigator>
       </CartProvider>
     </NavigationContainer>

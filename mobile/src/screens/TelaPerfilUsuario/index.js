@@ -49,14 +49,14 @@ export function TelaPerfilUsuario({ navigation }) {
           title="Meus Pedidos"
           containerStyle={{ marginTop: 20 }}
           buttonStyle={styles.button}
-          onPress={() => navigation.navigate("")}
+          onPress={() => navigation.navigate("ListaPedidos")}
         />
 
         <Button
           title="Alterar Senha"
           containerStyle={{ marginTop: 20 }}
           buttonStyle={styles.button}
-          onPress={() => navigation.navigate("MudarSenha")}
+          onPress={() => navigation.navigate("AlterarSenha")}
         />
       </View>
     </SafeAreaView>
