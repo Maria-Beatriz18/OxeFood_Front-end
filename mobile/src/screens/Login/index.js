@@ -9,8 +9,8 @@ import { styles } from "./styles";
 export function Login({ navigation }) {
   const API_URL = `${BASE_URL}/api/login/signin`;
 
-  const [email, setEmail] = useState();
-  const [senha, setSenha] = useState();
+  const [email, setEmail] = useState('matheus@email');
+  const [senha, setSenha] = useState('123');
 
   async function login() {
     if (email && senha) {
