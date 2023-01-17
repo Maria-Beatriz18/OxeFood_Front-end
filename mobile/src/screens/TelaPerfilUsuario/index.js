@@ -13,7 +13,7 @@ export function TelaPerfilUsuario({ navigation }) {
           <Image
             style={{ height: 50, width: 50 }}
             source={require("../../assets/avatar.png")}
-            onPress={() => navigation.navigate("TelaPerfilUsuario")}
+            onPress={() => navigation.goBack()}
           />
         }
         centerComponent={
@@ -42,7 +42,7 @@ export function TelaPerfilUsuario({ navigation }) {
           title="Restaurante"
           containerStyle={{ marginTop: 20 }}
           buttonStyle={styles.button}
-          onPress={() => navigation.navigate("")}
+          onPress={() => navigation.navigate("ListaDeProdutos")}
         />
 
         <Button

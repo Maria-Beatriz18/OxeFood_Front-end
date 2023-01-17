@@ -12,7 +12,7 @@ import {
 import { Header, Icon, Button } from "react-native-elements";
 import { CartContext } from "../../context/CartContext";
 
-export function ListaProdutos({ navigation }) {
+export function ListaDeProdutos({ navigation }) {
   const { cart, removerItem, totalValue } = useContext(CartContext);
 
   return (
@@ -22,7 +22,7 @@ export function ListaProdutos({ navigation }) {
           backgroundColor="#c60303"
           centerComponent={
             <Text style={{ fontSize: 24, fontWeight: "600", color: "white" }}>
-              Lista de Pedidos
+              Pedidos Restaurante
             </Text>
           }
           leftComponent={
