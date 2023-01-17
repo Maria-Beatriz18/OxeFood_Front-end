@@ -9,7 +9,7 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     let value = 0;
     cart.map((item) => {
-      value = value + parseFloat(item.preco);
+      value = value + parseFloat(item.valor);
     });
     setTotalValue(value);
   }, [cart]);
