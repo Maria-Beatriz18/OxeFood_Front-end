@@ -87,16 +87,13 @@ export function Sacola({ navigation }) {
                   </Text>
                   <Text style={{ marginBottom: 10 }}>{item.descricao}</Text>
                   <Text style={{ fontWeight: "bold", marginBottom: 2 }}>
-                    R$: <Text style={{ fontWeight: "400" }}>{item.preco}</Text>
-                  </Text>
-                  <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
-                    Serve até {item.pessoa} pessoas.
+                    R$: <Text style={{ fontWeight: "400" }}>{item.valor}</Text>
                   </Text>
                 </View>
 
                 <View>
                   <Image
-                    source={item.image}
+                    source={{uri: item.imagem}}
                     style={{ width: 100, height: 100, marginRight: 10 }}
                   />
                 </View>

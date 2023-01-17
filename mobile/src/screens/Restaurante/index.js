@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Text,
   View,
@@ -7,15 +7,23 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import { Avatar } from "react-native-elements";
 import { CartContext } from "../../context/CartContext";
 
 import { shopItens } from "../../data/shopItens";
 
-export function Restaurantes({ navigation }) {
+export function Restaurantes({ navigation, route }) {
+  const [produtos, setProdutos] = useState([]);
   const { adicionarItem } = useContext(CartContext);
   const handleAddToCart = (item) => {
     adicionarItem(item);
   };
+
+  useEffect(() => {
+    const { params } = route.params
+    setProdutos(params)
+    console.log(params)
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#ccc" }}>
@@ -30,7 +38,7 @@ export function Restaurantes({ navigation }) {
 
       <View>
         <FlatList
-          data={shopItens}
+          data={produtos}
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           contentContainerStyle={{
             alignItems: "center",
@@ -71,17 +79,18 @@ export function Restaurantes({ navigation }) {
                   </Text>
                   <Text style={{ marginBottom: 10 }}>{item.descricao}</Text>
                   <Text style={{ fontWeight: "bold", marginBottom: 2 }}>
-                    R$: <Text style={{ fontWeight: "400" }}>{item.preco}</Text>
+                    R$: <Text style={{ fontWeight: "400" }}>{item.valor}</Text>
                   </Text>
                   <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
-                    Serve até {item.pessoas} pessoas.
+                    Porção: {item.porcao}
                   </Text>
                 </View>
 
                 <View>
-                  <Image
-                    source={item.image}
-                    style={{ width: 100, height: 100, marginRight: 10 }}
+                  <Avatar
+                    rounded
+                    source={{uri: item.imagem}}
+                    size="large"
                   />
                 </View>
               </View>

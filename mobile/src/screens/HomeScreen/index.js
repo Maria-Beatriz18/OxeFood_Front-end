@@ -7,18 +7,21 @@ import {
   TouchableOpacity,
   TextInput,
   StatusBar,
-  Image,
+
 } from "react-native";
-import { Icon, Header } from "react-native-elements";
+import { Icon, Header, Avatar, Image } from "react-native-elements";
 import { categories } from "../../data/categoriesList";
 
 import { styles } from "./styles";
 import axios from "axios";
+import { useIsFocused } from "@react-navigation/native";
+
 
 export function HomeScreen({ navigation, route }) {
   const [getToken, setToken] = useState();
   const [getData, setData] = useState([]);
 
+  const isFocused = useIsFocused();
   useEffect(() => {
     if (route.params) {
       const { token } = route.params;
@@ -35,9 +38,13 @@ export function HomeScreen({ navigation, route }) {
         }
       );
       setData(result.data);
+      /*getData.map((l, i) => (
+       
+        console.log(result.data[i].itens)
+      ))*/
     }
     resgatarDados();
-  }, []);
+  });
 
   const renderCategories = ({ item }) => (
     <TouchableOpacity
@@ -51,15 +58,24 @@ export function HomeScreen({ navigation, route }) {
   );
 
   const renderShop = ({ item }) => (
+    
     <TouchableOpacity
       activeOpacity={0.5}
       key={item.id}
       style={styles.shopContainer}
-      onPress={() => navigation.navigate("Restaurantes")}
+      onPress={() => navigation.navigate("Restaurantes", {params: item.itens})}
     >
-      <Image source={{ uri: item.imagem }} />
+      <Avatar
+  rounded
+  source={{
+    uri:
+      item.imagem,
+  }}
+/>
+
       <Text style={styles.textShop}>{item.nome}</Text>
     </TouchableOpacity>
+    
   );
 
   return (
