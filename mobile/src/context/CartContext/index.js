@@ -22,9 +22,13 @@ export const CartProvider = ({ children }) => {
 
     setCart([...newCart]);
   }
+
+  function limparCart() {
+    setCart([]);
+  }
   return (
     <CartContext.Provider
-      value={{ cart, adicionarItem, removerItem, totalValue }}
+      value={{ cart, adicionarItem, removerItem, totalValue, limparCart }}
     >
       {children}
     </CartContext.Provider>
