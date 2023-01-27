@@ -20,10 +20,14 @@ export function Restaurantes({ navigation, route }) {
     adicionarItem(item);
   };
 
+  const [getToken, setToken] = useState(route.params.token);
+  const [getUserId, setUserId] = useState(route.params.userId);
+  const [getLojaId, setLojaId] = useState(route.params.lojaId);
+  const [getFrete, setFrete] = useState(route.params.valorFrete);
+
   useEffect(() => {
     const { params } = route.params;
     setProdutos(params);
-    console.log(params);
   }, []);
 
   const limparCarrinho = () => {
@@ -149,7 +153,14 @@ export function Restaurantes({ navigation, route }) {
             flexDirection: "row",
           }}
           activeOpacity={0.6}
-          onPress={() => navigation.navigate("Sacola")}
+          onPress={() =>
+            navigation.navigate("Sacola", {
+              token: getToken,
+              userId: getUserId,
+              lojaId: getLojaId,
+              valorFrete: getFrete,
+            })
+          }
         >
           <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>
             Sacola

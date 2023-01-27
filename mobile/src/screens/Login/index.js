@@ -9,8 +9,8 @@ import { styles } from "./styles";
 export function Login({ navigation }) {
   const API_URL = `${BASE_URL}/api/login/signin`;
 
-  const [email, setEmail] = useState('matheus@email');
-  const [senha, setSenha] = useState('123');
+  const [email, setEmail] = useState("matheus@email");
+  const [senha, setSenha] = useState("123");
 
   async function login() {
     if (email && senha) {
@@ -27,6 +27,7 @@ export function Login({ navigation }) {
               id: response.data.userid,
             });
           }
+          console.log(response.data);
         })
         .catch((err) => alert("Usuário incorreto"));
     } else {

@@ -14,6 +14,8 @@ import { ListaPedidos } from "./src/screens/ListaPedidos";
 import { TelaPerfilUsuario } from "./src/screens/TelaPerfilUsuario";
 import { StatusBar } from "react-native";
 import { CartProvider } from "./src/context/CartContext";
+import { Pedido } from "./src/screens/Pedido";
+import { PedidoConcluido } from "./src/PedidoConcluido";
 
 export default function App() {
   const { Navigator, Screen } = createNativeStackNavigator();
@@ -41,6 +43,8 @@ export default function App() {
           <Screen name="Sacola" component={Sacola} />
           <Screen name="ListaPedidos" component={ListaPedidos} />
           <Screen name="TelaPerfilUsuario" component={TelaPerfilUsuario} />
+          <Screen name="Pedido" component={Pedido} />
+          <Screen name="PedidoConcluido" component={PedidoConcluido} />
         </Navigator>
       </CartProvider>
     </NavigationContainer>

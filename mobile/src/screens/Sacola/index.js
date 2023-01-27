@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useState } from "react";
 
 import {
   Text,
@@ -12,8 +13,12 @@ import {
 import { Header, Icon, Button } from "react-native-elements";
 import { CartContext } from "../../context/CartContext";
 
-export function Sacola({ navigation }) {
+export function Sacola({ navigation, route }) {
   const { cart, removerItem, totalValue } = useContext(CartContext);
+  const [getToken, setToken] = useState(route.params.token);
+  const [getUserId, setUserId] = useState(route.params.userId);
+  const [getLojaId, setLojaId] = useState(route.params.lojaId);
+  const [getFrete, setFrete] = useState(route.params.valorFrete);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#ccc" }}>
@@ -93,7 +98,7 @@ export function Sacola({ navigation }) {
 
                 <View>
                   <Image
-                    source={{uri: item.imagem}}
+                    source={{ uri: item.imagem }}
                     style={{ width: 100, height: 100, marginRight: 10 }}
                   />
                 </View>
@@ -157,7 +162,15 @@ export function Sacola({ navigation }) {
                 padding: 8,
               }}
               activeOpacity={0.7}
-              onPress={() => null}
+              onPress={() =>
+                navigation.navigate("Pedido", {
+                  token: getToken,
+                  userId: getUserId,
+                  pedido: cart,
+                  lojaId: getLojaId,
+                  valorFrete: getFrete,
+                })
+              }
             >
               <Text style={{ color: "white" }}>Fazer pedido</Text>
             </TouchableOpacity>
